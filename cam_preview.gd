@@ -1,26 +1,19 @@
-tool
-extends Control
+@tool
+extends Window
 
-onready var window: Panel = $window
-onready var vp: Viewport = $window/container/vp
-onready var container: ViewportContainer = $window/container
+@onready var control : Control = $Control
+@onready var vp: SubViewport = $Control/container/vp
+@onready var container: SubViewportContainer = $Control/container
 
 
-func _ready():
-	resize_vp()
+func _process(delta):
+	vp.size = control.size
 
-func get_vp() -> Viewport:
+func get_vp() -> SubViewport:
 	return vp
-	
+
 func toggle_window(toggle):
-	window.visible = toggle
-	
+	visible = toggle
+
 func toggle_vp(toggle):
 	container.visible = toggle
-
-func _on_window_resized():
-	resize_vp()
-	
-func resize_vp():
-	vp.size = window.rect_size
-	
