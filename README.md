@@ -1,4 +1,4 @@
-# Nefrace's Camera Preview plugin
+# Nefrace's Camera Preview plugin, rework for Godot Engine 4 by Lakamfo
 
 ![icon](https://user-images.githubusercontent.com/18103556/172068287-a90cc657-ee91-4fec-b843-e4c2f7c44290.png)
 
