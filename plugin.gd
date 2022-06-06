@@ -21,10 +21,11 @@ func _enter_tree():
 	
 	get_editor_interface().add_child(cam_preview_instance)
 	cam_preview_instance.toggle_window(false)
+	cam_preview_instance.toggle_window(_visible)
 	
 	button_instance = PreviewButton.instantiate()
 	add_control_to_container(EditorPlugin.CONTAINER_SPATIAL_EDITOR_MENU, button_instance)
-#	
+	
 	button_instance.preview_toggled.connect(preview_pressed)
 	button_instance.preview_clear.connect(preview_free)
 	
@@ -41,14 +42,18 @@ func store_properties():
 
 func _exit_tree():
 	main_screen_changed.disconnect(_main_screen_changed)
-	button_instance.preview_clear.disconnect(preview_free)
-	button_instance.preview_toggled.disconnect(preview_pressed)
+	
+	if button_instance.preview_clear.is_connected(preview_free):
+		button_instance.preview_clear.disconnect(preview_free)
+	if button_instance.preview_toggled.is_connected(preview_pressed):
+		button_instance.preview_toggled.disconnect(preview_pressed)
+	
 	preview_free()
 	if cam_preview_instance:
 		cam_preview_instance.queue_free()
 	if button_instance:
 		button_instance.queue_free()
-	
+
 func find_a_camera(root) -> Camera3D:
 	if root is Camera3D:
 		return root
@@ -96,7 +101,9 @@ func selection_changed():
 func cam_deleted():
 	preview_free()
 	cam_preview_instance.toggle_vp(false)
-	cam_selected.tree_exiting.disconnect(cam_deleted)
+	
+	if cam_selected.tree_exiting.is_connected(cam_deleted):
+		cam_selected.tree_exiting.disconnect(cam_deleted)
 
 func preview_free():
 	if pcam != null:

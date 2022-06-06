@@ -9,6 +9,7 @@ extends Window
 func _process(delta):
 	vp.size = control.size
 
+
 func get_vp() -> SubViewport:
 	return vp
 
@@ -17,3 +18,6 @@ func toggle_window(toggle):
 
 func toggle_vp(toggle):
 	container.visible = toggle
+
+func close_request():
+	toggle_window(false)
