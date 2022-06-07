@@ -22,6 +22,5 @@ There's 3 search modes that can help to find a Camera node in the children of th
 - **By class** - recursively checking all children for type **Camera** (Not tested well, may not work with instantiated packed scenes)
 
 
-
-https://user-images.githubusercontent.com/18103556/172067736-6ec689b5-15ab-4848-8d85-b2a71b527c71.mp4
+https://user-images.githubusercontent.com/49194161/172311277-0a6650f9-cd6d-45de-a2cc-1dd123c780bc.mp4
 
