@@ -113,7 +113,7 @@ func preview_free():
 	cam_preview_instance.toggle_vp(false)
 
 func show_all():
-	if cam_preview_instance:
+	if cam_preview_instance and _visible:
 		cam_preview_instance.show()
 	if button_instance:
 		button_instance.show()
